@@ -30,14 +30,7 @@ public class MarsRover {
 
             String direction;
 
-            try {
-                direction = lines[positionLineIndex].split(SPACE_CHARACTER)[2];
-                if (!Arrays.asList(NORTH, EAST, SOUTH, WEST).contains(direction)) {
-                    throw new IllegalArgumentException();
-                }
-            } catch (RuntimeException e) {
-                throw new IllegalArgumentException("Could not parse direction from: " + lines[positionLineIndex]);
-            }
+            direction = readRoverDirection(lines[positionLineIndex]);
 
             String commandLine = lines[commandLineIndex];
 
@@ -61,6 +54,19 @@ public class MarsRover {
         }
 
         return out;
+    }
+
+    private String readRoverDirection(String line) {
+        String direction;
+        try {
+            direction = line.split(SPACE_CHARACTER)[2];
+            if (!Arrays.asList(NORTH, EAST, SOUTH, WEST).contains(direction)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (RuntimeException e) {
+            throw new IllegalArgumentException("Could not parse direction from: " + line);
+        }
+        return direction;
     }
 
     private int[] readPosition(String line) {
