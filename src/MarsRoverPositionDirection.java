@@ -7,15 +7,26 @@
  */
 public class MarsRoverPositionDirection {
 
-    public MarsRoverPositionDirection(int x, int y) {
+    private int xCoordinate;
+    private int yCoordinate;
+    private String direction;
 
-
+    public MarsRoverPositionDirection(int xCoordinate, int yCoordinate, String direction) {
+        this.xCoordinate = xCoordinate;
+        this.yCoordinate = yCoordinate;
+        this.direction = direction;
     }
 
-    public int getX() {
-        return 0;
+    public int getXCoordinate() {
+        return xCoordinate;
     }
 
-    public void setX(int x) {
+    public int getYCoordinate() {
+        return yCoordinate;
+    }
+
+    public Object getDirection() {
+
+        return direction;
     }
 }

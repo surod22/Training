@@ -25,12 +25,9 @@ public class MarsRover {
             int positionLineIndex = i * 2 + 1;
             int commandLineIndex = positionLineIndex + 1;
 
-            int []position = readPosition(lines[positionLineIndex]);
+            int []position = readRoverPosition(lines[positionLineIndex]);
+            String direction = readRoverDirection(lines[positionLineIndex]);
 
-
-            String direction;
-
-            direction = readRoverDirection(lines[positionLineIndex]);
 
             String commandLine = lines[commandLineIndex];
 
@@ -69,7 +66,7 @@ public class MarsRover {
         return direction;
     }
 
-    private int[] readPosition(String line) {
+    private int[] readRoverPosition(String line) {
         try {
             String[] split = line.split(SPACE_CHARACTER);
 
