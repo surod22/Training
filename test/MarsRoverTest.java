@@ -4,39 +4,34 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class MarsRoverTest {
-
+    public static final String NORTH = "N";
     private MarsRover rover;
 
     @Before
     public void setUp() throws Exception {
-        rover = new MarsRover();
+        rover = new MarsRover(1,1, NORTH);
+
     }
 
     @Test
-    public void shouldMoveRoverAround() throws Exception {
-        assertEquals("1 3 N\n", rover.run("5 5\n" + "1 1 N\n" + "MM\n"));
+    public void shouldHavePosition() {
+
+        assertEquals(1, rover.getXCoordinate());
+        assertEquals(1, rover.getYCoordinate());
+
     }
 
     @Test
-    public void shouldTurnRoverRight() throws Exception {
-        assertEquals("1 1 W\n", rover.run("5 5\n" +
-                "" + "1 1 N\n" + "RRR\n"));
+    public void shouldHaveDirection() throws Exception {
+
+        assertEquals(NORTH, rover.getDirection());
+
     }
 
     @Test
-    public void shouldTurnRoverLeft() throws Exception {
-        assertEquals("1 1 E\n", rover.run("5 5\n" + "1 1 N\n" + "LLL\n"));
-    }
-
-    @Test
-    public void shouldMoveMultipleRoversCorrectly() throws Exception {
-        String in = "5 5\n" +
-                "1 2 N\n" +
-                "LMLMLMLMM\n" +
-                "3 3 E\n" +
-                "MMRMMRMRRM";
-
-        assertEquals("1 3 N\n5 1 E\n", rover.run(in));
+    public void shouldChangePosition() throws Exception {
+        rover.changePosition("E");
+        assertEquals(2, rover.getXCoordinate());
     }
 
 }
