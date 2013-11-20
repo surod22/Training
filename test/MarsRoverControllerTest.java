@@ -6,27 +6,27 @@ import static org.junit.Assert.assertEquals;
 
 public class MarsRoverControllerTest {
 
-    private MarsRoverController rover;
+    private MarsRoverController roverController;
 
     @Before
     public void setUp() throws Exception {
-        rover = new MarsRoverController();
+        roverController = new MarsRoverController();
     }
 
     @Test
     public void shouldMoveRoverAround() throws Exception {
-        assertEquals("1 3 N\n", rover.run("5 5\n" + "1 1 N\n" + "MM\n"));
+        assertEquals("1 3 N\n", roverController.run("5 5\n" + "1 1 N\n" + "MM\n"));
     }
 
     @Test
     public void shouldTurnRoverRight() throws Exception {
-        assertEquals("1 1 W\n", rover.run("5 5\n" +
+        assertEquals("1 1 W\n", roverController.run("5 5\n" +
                 "" + "1 1 N\n" + "RRR\n"));
     }
 
     @Test
     public void shouldTurnRoverLeft() throws Exception {
-        assertEquals("1 1 E\n", rover.run("5 5\n" + "1 1 N\n" + "LLL\n"));
+        assertEquals("1 1 E\n", roverController.run("5 5\n" + "1 1 N\n" + "LLL\n"));
     }
 
 
@@ -38,7 +38,7 @@ public class MarsRoverControllerTest {
                 "3 3 E\n" +
                 "MMRMMRMRRM";
 
-        assertEquals("1 3 N\n5 1 E\n", rover.run(in));
+        assertEquals("1 3 N\n5 1 E\n", roverController.run(in));
     }
 
 

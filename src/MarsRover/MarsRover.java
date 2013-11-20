@@ -14,6 +14,16 @@ public class MarsRover {
         this.direction = direction;
     }
 
+    public String turnLeft() {
+        this.direction = MarsRoverController.COMPASS_DIRECTIONS.get((MarsRoverController.COMPASS_DIRECTIONS.indexOf(this.direction) + 3) % MarsRoverController.COMPASS_DIRECTIONS.size()).toString();
+        return this.direction;
+    }
+
+    public String turnRight() {
+        this.direction = MarsRoverController.COMPASS_DIRECTIONS.get((MarsRoverController.COMPASS_DIRECTIONS.indexOf(this.direction) + 1) % MarsRoverController.COMPASS_DIRECTIONS.size()).toString();
+        return this.direction;
+    }
+
     public int getXCoordinate() {
         return xCoordinate;
     }
@@ -27,14 +37,14 @@ public class MarsRover {
         return direction;
     }
 
-    public void changePosition(String direction) {
-        if (direction.equals(N.getValue())) {
+    public void changePosition() {
+        if (this.direction.equals(N.getValue())) {
             this.yCoordinate += +1;
-        } else if (direction.equals(S.getValue())) {
+        } else if (this.direction.equals(S.getValue())) {
             this.yCoordinate += -1;
-        } else if (direction.equals(E.getValue())) {
+        } else if (this.direction.equals(E.getValue())) {
             this.xCoordinate += +1;
-        } else if (direction.equals(W.getValue())) {
+        } else if (this.direction.equals(W.getValue())) {
             this.xCoordinate += -1;
         }
 

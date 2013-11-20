@@ -26,31 +26,31 @@ public class MarsRoverController {
             int positionLineIndex = i * 2 + 1;
             int commandLineIndex = positionLineIndex + 1;
 
-
             int []position = readRoverPosition(lines[positionLineIndex]);
             String direction = readRoverDirection(lines[positionLineIndex]);
             MarsRover rover = new MarsRover(position[0], position[1], direction);
 
-
             String commandLine = lines[commandLineIndex];
             validateCommands(commandLine);
+            executeCommand(direction, rover, commandLine);
 
-            for (String command : getCommandArray(commandLine)) {
-                if (command.equals(M.getValue())) {
-
-                    rover.changePosition(direction);
-
-                } else if (command.equals(R.getValue())) {
-                    direction = turnRight(direction);
-                } else if (command.equals(L.getValue())) {
-                    direction = turnLeft(direction);
-                }
-            }
-
-            out += rover.getXCoordinate() + SPACE_CHARACTER + rover.getYCoordinate() + SPACE_CHARACTER + direction + "\n";
+            out += rover.getXCoordinate() + SPACE_CHARACTER + rover.getYCoordinate() + SPACE_CHARACTER + rover.getDirection() + "\n";
         }
 
         return out;
+    }
+
+    private void executeCommand(String direction, MarsRover rover, String commandLine) {
+        for (String command : getCommandArray(commandLine)) {
+            if (command.equals(M.getValue())) {
+                rover.changePosition();
+
+            } else if (command.equals(R.getValue())) {
+                rover.turnRight();
+            } else if (command.equals(L.getValue())) {
+                rover.turnLeft();
+            }
+        }
     }
 
     private String readRoverDirection(String line) {
@@ -74,16 +74,6 @@ public class MarsRoverController {
         } catch (RuntimeException e) {
             throw new IllegalArgumentException("Could not parse position from: " + line);
         }
-    }
-
-    private String turnLeft(String direction) {
-        direction = COMPASS_DIRECTIONS.get((COMPASS_DIRECTIONS.indexOf(direction) + 3) % COMPASS_DIRECTIONS.size()).toString();
-        return direction;
-    }
-
-    private String turnRight(String direction) {
-        direction = COMPASS_DIRECTIONS.get((COMPASS_DIRECTIONS.indexOf(direction) + 1) % COMPASS_DIRECTIONS.size()).toString();
-        return direction;
     }
 
     private String[] getCommandArray(String commandLine) {

@@ -16,23 +16,36 @@ public class MarsRoverTest {
 
     @Test
     public void shouldHavePosition() {
-        rover.changePosition(NORTH);
+        rover.changePosition();
         assertEquals(1, rover.getXCoordinate());
         assertEquals(2, rover.getYCoordinate());
 
     }
 
     @Test
-    public void shouldHaveDirection() throws Exception {
+    public void shouldTurnRoverRight() throws Exception {
+        MarsRover rover = new MarsRover(1,1, NORTH);
+        rover.turnRight();
+        assertEquals(rover.getDirection(), "E");
+    }
 
+    @Test
+    public void shouldTurnRoverLeft() throws Exception {
+        MarsRover rover = new MarsRover(1,1, NORTH);
+        rover.turnLeft();
+        assertEquals(rover.getDirection(), "W");
+    }
+
+    @Test
+    public void shouldHaveDirection() throws Exception {
         assertEquals(NORTH, rover.getDirection());
 
     }
 
     @Test
     public void shouldChangePosition() throws Exception {
-        rover.changePosition("E");
-        assertEquals(2, rover.getXCoordinate());
+        rover.changePosition();
+        assertEquals(2, rover.getYCoordinate());
     }
 
 }
