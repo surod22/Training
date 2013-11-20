@@ -2,6 +2,7 @@ import MarsRover.MarsRoverController;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class MarsRoverControllerTest {
@@ -29,6 +30,12 @@ public class MarsRoverControllerTest {
         assertEquals("1 1 E\n", roverController.run("5 5\n" + "1 1 N\n" + "LLL\n"));
     }
 
+    @Test
+    public void shouldGetRoversDirectionFromCommandLine() throws Exception {
+        assertEquals("N", roverController.readRoverDirection("1 1 N"));
+
+
+    }
 
     @Test
     public void shouldMoveMultipleRoversCorrectly() throws Exception {

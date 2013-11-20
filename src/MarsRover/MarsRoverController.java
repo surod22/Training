@@ -32,7 +32,7 @@ public class MarsRoverController {
 
             String commandLine = lines[commandLineIndex];
             validateCommands(commandLine);
-            executeCommand(direction, rover, commandLine);
+            executeCommand(rover, commandLine);
 
             out += rover.getXCoordinate() + SPACE_CHARACTER + rover.getYCoordinate() + SPACE_CHARACTER + rover.getDirection() + "\n";
         }
@@ -40,7 +40,7 @@ public class MarsRoverController {
         return out;
     }
 
-    private void executeCommand(String direction, MarsRover rover, String commandLine) {
+    private void executeCommand(MarsRover rover, String commandLine) {
         for (String command : getCommandArray(commandLine)) {
             if (command.equals(M.getValue())) {
                 rover.changePosition();
@@ -53,7 +53,7 @@ public class MarsRoverController {
         }
     }
 
-    private String readRoverDirection(String line) {
+    public String readRoverDirection(String line) {
         String direction;
 
         try {
