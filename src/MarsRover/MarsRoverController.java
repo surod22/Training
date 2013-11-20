@@ -29,6 +29,8 @@ public class MarsRoverController {
 
             int []position = readRoverPosition(lines[positionLineIndex]);
             String direction = readRoverDirection(lines[positionLineIndex]);
+            MarsRover rover = new MarsRover(position[0], position[1], direction);
+
 
             String commandLine = lines[commandLineIndex];
             validateCommands(commandLine);
@@ -36,9 +38,7 @@ public class MarsRoverController {
             for (String command : getCommandArray(commandLine)) {
                 if (command.equals(M.getValue())) {
 
-                    int[] newPosition = position;
-                    changePosition(direction, newPosition);
-                    position = newPosition;
+                    rover.changePosition(direction);
 
                 } else if (command.equals(R.getValue())) {
                     direction = turnRight(direction);
@@ -47,7 +47,7 @@ public class MarsRoverController {
                 }
             }
 
-            out += position[0] + SPACE_CHARACTER + position[1] + SPACE_CHARACTER + direction + "\n";
+            out += rover.getXCoordinate() + SPACE_CHARACTER + rover.getYCoordinate() + SPACE_CHARACTER + direction + "\n";
         }
 
         return out;
@@ -88,18 +88,6 @@ public class MarsRoverController {
 
     private String[] getCommandArray(String commandLine) {
         return commandLine.split("(?!^)");
-    }
-
-    private void changePosition(String direction, int[] newPosition) {
-        if (direction.equals(N.getValue())) {
-            newPosition[1] += +1;
-        } else if (direction.equals(S.getValue())) {
-            newPosition[1] += -1;
-        } else if (direction.equals(E.getValue())) {
-            newPosition[0] += +1;
-        } else if (direction.equals(W.getValue())) {
-            newPosition[0] += -1;
-        }
     }
 
     private void validateCommands(String line) {

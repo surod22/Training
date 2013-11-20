@@ -1,5 +1,7 @@
 package MarsRover;
 
+import static MarsRover.Movement.*;
+
 public class MarsRover {
 
     private int xCoordinate;
@@ -26,7 +28,16 @@ public class MarsRover {
     }
 
     public void changePosition(String direction) {
-        this.xCoordinate++;
+        if (direction.equals(N.getValue())) {
+            this.yCoordinate += +1;
+        } else if (direction.equals(S.getValue())) {
+            this.yCoordinate += -1;
+        } else if (direction.equals(E.getValue())) {
+            this.xCoordinate += +1;
+        } else if (direction.equals(W.getValue())) {
+            this.xCoordinate += -1;
+        }
+
 
     }
 }

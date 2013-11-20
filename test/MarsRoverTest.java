@@ -16,9 +16,9 @@ public class MarsRoverTest {
 
     @Test
     public void shouldHavePosition() {
-
+        rover.changePosition(NORTH);
         assertEquals(1, rover.getXCoordinate());
-        assertEquals(1, rover.getYCoordinate());
+        assertEquals(2, rover.getYCoordinate());
 
     }
 
